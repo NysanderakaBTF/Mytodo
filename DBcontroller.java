@@ -9,7 +9,7 @@ public class DBcontroller {
             //Registering the HSQLDB JDBC driver
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
             //Creating the connection with HSQLDB
-            con = DriverManager.getConnection("jdbc:hsqldb:file:D\\db\\todoapp", "", "");
+            con = DriverManager.getConnection("jdbc:hsqldb:file:D\\db\\help", "", "");
             if (con!= null){
                 System.out.println("Connection created successfully");
 

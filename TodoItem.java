@@ -9,8 +9,8 @@ import java.util.Timer;
 public class TodoItem {
     private String name;
     private String notes;
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private LocalTime time;
     private boolean completed;
 
 
@@ -19,8 +19,16 @@ public class TodoItem {
         name = new String();
         notes = new String("");
         //date = new LocalDate();
-        date = getDate();
+        date = LocalDate.now();
         completed = false;
+    }
+
+    public TodoItem(TodoItem addible) {
+        this.name=addible.getName();
+        this.date=addible.getDate();
+        this.completed=addible.getCompleted();
+        this.notes=addible.getNotes();
+        this.time=addible.getTime();
     }
 
     public String getName() {
@@ -45,19 +53,19 @@ public class TodoItem {
         notes = s;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
-    public void setDate(Date d) {
+    public void setDate(LocalDate d) {
         date = d;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
 
         return time;
     }
 
-    public void setTime(Time t) {
+    public void setTime(LocalTime t) {
         time = t;
     }
 
@@ -69,13 +77,11 @@ public class TodoItem {
 
     @Override
     public String toString() {
-        return "TodoItem{" +
-                "name='" + name + '\'' +
-                ", notes='" + notes + '\'' +
-                ", date=" + date +
-                ", time=" + time +
-                ", completed=" + completed +
-                '}';
+        return  "name='" + name + '\n' +
+                "notes='" + notes + '\n' +
+                "date=" + date +'\n'+
+                "time=" + time +'\n'+
+                "completed=" + completed +'\n';
     }
 
     public void setCompleted(boolean b) {
