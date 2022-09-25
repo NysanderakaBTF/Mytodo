@@ -1,9 +1,12 @@
+import org.hsqldb.HsqlDateTime;
+
+import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.Timer;
 
 public class TodoItem {
@@ -12,7 +15,15 @@ public class TodoItem {
     private LocalDate date;
     private LocalTime time;
     private boolean completed;
+    private int id ;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public TodoItem () {
 
@@ -21,6 +32,7 @@ public class TodoItem {
         //date = new LocalDate();
         date = LocalDate.now();
         completed = false;
+        id=id++;
     }
 
     public TodoItem(TodoItem addible) {
@@ -29,7 +41,25 @@ public class TodoItem {
         this.completed=addible.getCompleted();
         this.notes=addible.getNotes();
         this.time=addible.getTime();
+        this.id = addible.id;
     }
+
+    public TodoItem(String name, String notes, LocalDate date, LocalTime time, boolean completed) {
+        this.name = name;
+        this.notes = notes;
+        this.date = date;
+        this.time = time;
+        this.completed = completed;
+    }
+    public TodoItem(String name, String notes, LocalDate date, LocalTime time, boolean completed, int id) {
+        this.name = name;
+        this.notes = notes;
+        this.date = date;
+        this.time = time;
+        this.completed = completed;
+        this.id = id;
+    }
+
 
     public String getName() {
 
@@ -81,7 +111,9 @@ public class TodoItem {
                 "notes='" + notes + '\n' +
                 "date=" + date +'\n'+
                 "time=" + time +'\n'+
-                "completed=" + completed +'\n';
+                "completed=" + completed +'\n'+
+                "ID = " + id+'\n';
+
     }
 
     public void setCompleted(boolean b) {

@@ -27,7 +27,7 @@ public class Main extends JFrame {
 
     // JTable Header
     public static final String[] columns = {
-            "Name", "Date", "Completed",
+            "Name", "Date", "Completed","ID"
     };
     // Create the table model
     private DefaultTableModel model = new DefaultTableModel(columns, 0){
@@ -45,6 +45,32 @@ public class Main extends JFrame {
     private JPanel mainPanel = new JPanel(new BorderLayout());
     int selectedSorter;
     String selecteditem;
+    JList cat;
+    DBcontroller bcontroller = new DBcontroller();
+    int displayMode =0;
+    public int getItemPosByID(int id){
+        for(int i=0;i<tdl.size();i++){
+            System.out.println(tdl.get(i).getId()+"                    "+id);
+            if(tdl.get(i).getId()==id){
+                return i;
+            }
+        }
+        return -1;
+    }
+    public void updateTableOnSelectionMode(){
+        selectedSorter = cat.getSelectedIndex();
+        model.getDataVector().removeAllElements();
+        model.fireTableDataChanged();
+        if(selectedSorter==0){
+            tdl.forEach(o -> model.addRow(new Object[]{o.getName(), o.getDate().toString(), o.getCompleted(), o.getId()}));
+        } else if (selectedSorter == 1) {
+            tdl.stream().filter(item-> (item.getCompleted()==false)).forEach(item->model.addRow(new Object[]{item.getName(), item.getDate().toString(), item.getCompleted(), item.getId()}));
+        }else if (selectedSorter == 2) {
+            tdl.stream().filter(item-> (item.getCompleted()==true)).forEach(item->model.addRow(new Object[]{item.getName(), item.getDate().toString(), item.getCompleted(), item.getId()}));
+        }else if (selectedSorter == 3) {
+            tdl.stream().filter(item-> (item.getDate().equals(LocalDate.now()))).forEach(item->model.addRow(new Object[]{item.getName(), item.getDate().toString(), item.getCompleted(), item.getId()}));
+        }
+    }
     public Main()
     {
         super("Тестовое окно");
@@ -55,67 +81,55 @@ public class Main extends JFrame {
         list.addElement("Uncompleted");
         list.addElement("Completed");
         list.addElement("Today");
-        JList cat = new JList<>(list);
+        cat = new JList<>(list);
 
         listPanel.add(cat);
+        cat.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        cat.setSelectedIndex(0);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JButton addButton = new JButton("Add");
         JButton clearButton = new JButton("Complete");
-        JButton updateButton = new JButton("Upd all");
+        JButton updateButton = new JButton("Edit");
         JButton delete = new JButton("Delete");
 
         JPanel buttonPanel = new JPanel();
 
         buttonPanel.add(addButton);
-        buttonPanel.add(clearButton);
+        //buttonPanel.add(clearButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(delete);
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setRowSelectionAllowed(true);
 
-        // This code is called when the Add button is clicked.
-//        addButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //Add form data
-//                model.addRow(
-//                        new Object[]{
-//                                text1.getText(),
-//                                text2.getText(),
-//                                text3.getText()
-//                        }
-//                );
-//            }
-//        });
-
-        // This code is called when the Clear button is clicked.
-//        clearButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                //Clear the form
-//                text1.setText("");
-//                text2.setText("");
-//                text3.setText("");
-//            }
-//        });
-
-        //Create the JTextFields panel
-//        JPanel textPanel = new JPanel(new BorderLayout());
-//        text1 = new JTextField();
-//        text2 = new JTextField();
-//        text3 = new JTextField();
-//        //Add JTextFields to the panel
-//        textPanel.add(text1, BorderLayout.NORTH);
-//        textPanel.add(text2, BorderLayout.CENTER);
-//        textPanel.add(text3, BorderLayout.SOUTH);
 
         //Add panels and table to the main panel
 
         dispinfo.setEditable(false);
         dispinfo.setColumns(40);
         dispinfo.setLineWrap(true);
+
+        //db extration
+        bcontroller.ExtractData(tdl);
+        cat.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+//                selectedSorter = cat.getSelectedIndex();
+//                model.getDataVector().removeAllElements();
+//                model.fireTableDataChanged();
+//                if(selectedSorter==0){
+//                    tdl.forEach(o -> model.addRow(new Object[]{o.getName(), o.getDate().toString(), o.getCompleted()}));
+//                } else if (selectedSorter == 1) {
+//                    tdl.stream().filter(item-> (item.getCompleted()==false)).forEach(item->model.addRow(new Object[]{item.getName(), item.getDate().toString(), item.getCompleted()}));
+//                }else if (selectedSorter == 2) {
+//                    tdl.stream().filter(item-> (item.getCompleted()==true)).forEach(item->model.addRow(new Object[]{item.getName(), item.getDate().toString(), item.getCompleted()}));
+//                }else if (selectedSorter == 3) {
+//                    tdl.stream().filter(item-> (item.getDate().equals(LocalDate.now()))).forEach(item->model.addRow(new Object[]{item.getName(), item.getDate().toString(), item.getCompleted()}));
+//                }
+                updateTableOnSelectionMode();
+            }
+        });
 
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -129,26 +143,41 @@ public class Main extends JFrame {
                     model.addRow(new Object[]{
                             addible.getName(),
                             addible.getDate().toString(),
-                            addible.getCompleted()
+                            addible.getCompleted(),
+                            addible.getId()
                     });
-                    //TODO: add database push
+                    bcontroller.InsertData(addible);
+                    //TODO: add database push+++++
                     addible.setName(String.valueOf(Integer.MIN_VALUE));
                 }
+            }
+        });
+        updateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selr = table.getSelectedRow();
+                int pos = getItemPosByID((Integer) table.getValueAt(selr,3));
+                EditDialog a = new EditDialog(null, tdl.get(pos));
+                a.setVisible(true);
+                //TODO:push update to db+++++++
+                bcontroller.UpdateData(tdl.get(pos));
+                updateTableOnSelectionMode();
             }
         });
         delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int del = JOptionPane.showConfirmDialog(null,"Do you really want to delete this reminder?","Deletion confirmation",JOptionPane.YES_NO_OPTION);
+                int del = JOptionPane.showConfirmDialog(Main.this,"Do you really want to delete this reminder?","Deletion confirmation",JOptionPane.YES_NO_OPTION);
                 if(del == 0) {
                     selecteditem = table.getValueAt(table.getSelectedRow(), 0).toString();
                     LocalDate ld = LocalDate.parse(table.getValueAt(table.getSelectedRow(), 1).toString());
                     // find
-                    int sel = getItemPosByName(selecteditem, ld);
+                    int sel = getItemPosByID((Integer) table.getValueAt(table.getSelectedRow(), 3));
                     // System.out.println(sel);
                     System.out.println(sel);
                     if (sel != -1) {
                         dispinfo.setText(" ");
+                        bcontroller.DeleteData(tdl.get(sel));
                         tdl.remove(sel);
                         //table.remove(table.getSelectedRow());
                         ((DefaultTableModel)table.getModel()).removeRow(sel);
@@ -162,12 +191,12 @@ public class Main extends JFrame {
             public void valueChanged(ListSelectionEvent event) {
                 // do some actions here, for example
                 // print first column value from selected row
-                //TODO: if completed changed - push to db and ubpare table
+                System.out.println(event);
                 try {
-                    selecteditem = table.getValueAt(table.getSelectedRow(), 0).toString();
-                    LocalDate ld = LocalDate.parse(table.getValueAt(table.getSelectedRow(), 1).toString());
+//                    selecteditem = table.getValueAt(table.getSelectedRow(), 0).toString();
+//                    LocalDate ld = LocalDate.parse(table.getValueAt(table.getSelectedRow(), 1).toString());
                     // find
-                    int sel = getItemPosByName(selecteditem, ld);
+                    int sel = getItemPosByID((Integer) table.getValueAt(table.getSelectedRow(), 3));
                     System.out.println(sel);
                     if (sel != -1)
                         dispinfo.setText(tdl.get(sel).toString());
@@ -179,21 +208,44 @@ public class Main extends JFrame {
             }
         });
 
-//        table.getModel().addTableModelListener(new TableModelListener() {
-//            @Override
-//            public void tableChanged(TableModelEvent e) {
-//                int row = e.getFirstRow();
-//                int column = e.getColumn();
-//                TableModel model = (TableModel)e.getSource();
-//                String columnName = model.getColumnName(column);
-//                Object data = model.getValueAt(row, column);
-//                if(column == 2){
-//                    //TODO:update db completed state
-//                    System.out.println(data.getClass());
-//                }
-//
-//            }
-//        });
+        table.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                TableModel model = (TableModel)e.getSource();
+                String columnName = model.getColumnName(column);
+                boolean data= true;
+                try {
+                     data = (boolean) model.getValueAt(row, column);
+                }
+                catch (java.lang.Exception aa){
+                    System.out.println(aa);
+                }
+                System.out.println(e.getColumn());
+                String sell;
+                try {
+                    sell = table.getValueAt(table.getSelectedRow(), 0).toString();
+                    LocalDate ld = LocalDate.parse(table.getValueAt(table.getSelectedRow(), 1).toString());
+                    if(column==2){
+                        int pos = getItemPosByID((Integer) table.getValueAt(table.getSelectedRow(), 3));
+                       // int pos = getItemPosByID(sell,ld);
+                        tdl.get(pos).setCompleted(!tdl.get(pos).getCompleted());
+
+                        bcontroller.UpdateData(tdl.get(pos));
+
+                        dispinfo.setText(tdl.get(pos).toString());
+                        updateTableOnSelectionMode();
+                    }
+                }catch (java.lang.Exception aaa){
+                    System.out.println(aaa);
+                }
+
+                    //TODO:update db completed state+++++++++
+
+
+            }
+        });
 
 
         //mainPanel.add(textPanel, BorderLayout.NORTH);
@@ -229,14 +281,7 @@ public class Main extends JFrame {
 //                new Main();
 //            }
 //        });
-    public int getItemPosByName(String name, LocalDate dd){
-        for(int i=0;i<tdl.size();i++){
-           // System.out.println(tdl.get(i).getName()+ name + tdl.get(i).getDate() + dd);
-            if(tdl.get(i).getName().equals(name) && tdl.get(i).getDate().toString().equals(dd.toString())){
-                return i;
-            }
-        }
-        return -1;
-    }
+
 }
+
 

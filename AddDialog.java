@@ -21,10 +21,14 @@ class AddDialog extends Dialog {
     LocalDate date;
     LocalTime time;
     TextField nn = new TextField("Enter name");
-    JButton aaa = new JButton("Add");
+    JButton ads = new JButton("Add");
     JButton cans = new JButton("Cansel");
     TextArea ss = new TextArea("Event Description");
     TextField ti = new TextField("Enter time");
+    UtilDateModel model = new UtilDateModel();
+    JDatePanelImpl datePanel = new JDatePanelImpl(model);
+    JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+
 
 
 
@@ -42,16 +46,14 @@ class AddDialog extends Dialog {
         inputs.add(i1, BorderLayout.NORTH);
         inputs.add(ss, BorderLayout.CENTER);
 
-        UtilDateModel model = new UtilDateModel();
-        JDatePanelImpl datePanel = new JDatePanelImpl(model);
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+
 
         inputs.add(datePicker, BorderLayout.SOUTH);
         inputs.add(ti, BorderLayout.SOUTH);
         ti.setColumns(5);
 
         JPanel dt = new JPanel();
-        dt.add(aaa);
+        dt.add(ads);
         dt.add(cans);
 
         add(dt,BorderLayout.SOUTH);
@@ -70,7 +72,7 @@ class AddDialog extends Dialog {
                 dispose();
             }
         });
-        aaa.addActionListener(new ActionListener() {
+        ads.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //date=LocalDate.parse(datePicker.getJFormattedTextField().getText());
