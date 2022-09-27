@@ -9,6 +9,7 @@ public class EditDialog extends AddDialog{
         ads.setText("Confirm");
         nn.setText(item.getName());
         name=item.getName();
+        completed_status=item.getCompleted();
 
         desc = item.getNotes();
         ss.setText(item.getNotes());

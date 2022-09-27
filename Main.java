@@ -139,14 +139,14 @@ public class Main extends JFrame {
                 a.setVisible(true);
                 if( ! addible.getName().equals(String.valueOf(Integer.MIN_VALUE))){
                     tdl.add(new TodoItem(addible));
-
+                    bcontroller.InsertData(addible);
                     model.addRow(new Object[]{
                             addible.getName(),
                             addible.getDate().toString(),
                             addible.getCompleted(),
                             addible.getId()
                     });
-                    bcontroller.InsertData(addible);
+
                     //TODO: add database push+++++
                     addible.setName(String.valueOf(Integer.MIN_VALUE));
                 }

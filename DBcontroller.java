@@ -23,31 +23,37 @@ public class DBcontroller {
             e.printStackTrace(System.out);
         }
     }
-    public void InsertData(TodoItem item){
+    public void InsertData(TodoItem item) {
         try {
             stm = con.createStatement();
-          //  PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table (name, notes, date, time, completed, id) VALUES (?, ?, ?, ?, ?, ?);",Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table (name, notes, date, time, completed) VALUES (?, ?, ?, ?, ?);",Statement.RETURN_GENERATED_KEYS);
+            //  PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table (name, notes, date, time, completed, id) VALUES (?, ?, ?, ?, ?, ?);",Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table (name, notes, date, time, completed) VALUES (?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 
-            ps.setString(1,item.getName());
-            ps.setString(2,item.getNotes());
+            ps.setString(1, item.getName());
+            ps.setString(2, item.getNotes());
             ps.setDate(3, Date.valueOf(item.getDate()));
             ps.setTime(4, Time.valueOf(item.getTime()));
-            ps.setBoolean(5,item.getCompleted());
-          //  ps.setInt(6,item.getId());
+            ps.setBoolean(5, item.getCompleted());
+            //  ps.setInt(6,item.getId());
 
 
             System.out.println(ps);
             ps.execute();
 
             ResultSet res = ps.getGeneratedKeys();
-            System.out.println(res.getInt(1));
-            if(res.next()){
+            //System.out.println(res.getInt(1));
+            //if(res.next()){
+            try {
+                res.next();
                 item.setId(res.getInt(1));
+                item.setId(item.getId());
+                System.out.println(item.getId());
+            } catch (SQLException e) {
+                e.printStackTrace();
+
             }
         }catch (SQLException e){
             e.printStackTrace();
-
         }
     }
     public void ExtractData(Vector<TodoItem> ve){
@@ -64,14 +70,15 @@ public class DBcontroller {
                 Time time = rs.getTime("time");
                 boolean completed = rs.getBoolean("completed");
                 int id = rs.getInt("id");
-                System.out.println(id+" "+time);
+                //System.out.println(id+" "+time);
                 ve.add(new TodoItem(name, notes, date.toLocalDate(),time.toLocalTime(),completed, id));
             }
+
 
         } catch (SQLException e) {
             System.out.println(e);
         }
-        System.out.println(ve);
+        //System.out.println(ve);
     }
     public void UpdateData(TodoItem item){
         try {

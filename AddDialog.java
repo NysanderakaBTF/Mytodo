@@ -28,6 +28,7 @@ class AddDialog extends Dialog {
     UtilDateModel model = new UtilDateModel();
     JDatePanelImpl datePanel = new JDatePanelImpl(model);
     JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+    boolean completed_status = false;
 
 
 
@@ -117,6 +118,7 @@ class AddDialog extends Dialog {
                     item.setName(name);
                     item.setNotes(desc);
                     item.setTime(time);
+                    item.setCompleted(completed_status);
                     dispose();
                 }
             }
