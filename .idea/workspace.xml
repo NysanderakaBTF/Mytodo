@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5df59d4-2f88-45f4-854d-cb07e37a8154" name="Changes" comment="pls help">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/20f573de-3906-49dc-990e-b728ca63d9fa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/20f573de-3906-49dc-990e-b728ca63d9fa.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AddDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/AddDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D/db/todoapp.lck" beforeDir="false" afterPath="$PROJECT_DIR$/D/db/todoapp.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/D/db/todoapp.properties" beforeDir="false" afterPath="$PROJECT_DIR$/D/db/todoapp.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DBcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/DBcontroller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NotoficationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/NotoficationDialog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TodoItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/TodoItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +29,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="p1qv43ju" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -44,7 +48,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;260&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;ChangesTree.GroupingKeys&quot;: [
@@ -80,7 +84,26 @@
       <updated>1663948666138</updated>
       <workItem from="1663948668894" duration="16453000" />
       <workItem from="1664024332868" duration="1624000" />
-      <workItem from="1664043037988" duration="9180000" />
+      <workItem from="1664043037988" duration="9694000" />
+      <workItem from="1664102604112" duration="25921000" />
+      <workItem from="1664271990257" duration="4576000" />
+      <workItem from="1664279575442" duration="378000" />
+      <workItem from="1664279963992" duration="6000" />
+      <workItem from="1664518161019" duration="862000" />
+      <workItem from="1664567278532" duration="29000" />
+      <workItem from="1664906562667" duration="3205000" />
+      <workItem from="1664987753322" duration="644000" />
+      <workItem from="1665730597411" duration="496000" />
+      <workItem from="1665731292576" duration="1330000" />
+      <workItem from="1665756540384" duration="3415000" />
+      <workItem from="1666942128851" duration="1202000" />
+      <workItem from="1667400199874" duration="983000" />
+      <workItem from="1668752016523" duration="1837000" />
+      <workItem from="1668761608883" duration="28000" />
+      <workItem from="1668968291030" duration="717000" />
+      <workItem from="1668969326289" duration="37000" />
+      <workItem from="1669974910842" duration="1469000" />
+      <workItem from="1669983529351" duration="1132000" />
     </task>
     <task id="LOCAL-00001" summary="pls help">
       <created>1663965624664</created>
@@ -89,7 +112,28 @@
       <option name="project" value="LOCAL" />
       <updated>1663965624664</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="pls help">
+      <created>1664053152335</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664053152335</updated>
+    </task>
+    <task id="LOCAL-00003" summary="almost work">
+      <created>1664136582879</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1664136582880</updated>
+    </task>
+    <task id="LOCAL-00004" summary="pls help">
+      <created>1664279685919</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1664279685919</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,30 +167,26 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="almost work" />
     <MESSAGE value="pls help" />
     <option name="LAST_COMMIT_MESSAGE" value="pls help" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Main.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Main.java</url>
-          <line>167</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Main.java</url>
-          <line>231</line>
-          <properties class="Main" method="getItemPosByName">
+          <url>file://$PROJECT_DIR$/DBcontroller.java</url>
+          <line>25</line>
+          <properties class="DBcontroller">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/DBcontroller.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

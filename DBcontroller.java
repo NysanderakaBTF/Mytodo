@@ -26,8 +26,8 @@ public class DBcontroller {
     public void InsertData(TodoItem item) {
         try {
             stm = con.createStatement();
-            //  PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table (name, notes, date, time, completed, id) VALUES (?, ?, ?, ?, ?, ?);",Statement.RETURN_GENERATED_KEYS);
-            PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table (name, notes, date, time, completed) VALUES (?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO reminders_table" +
+                    " (name, notes, date, time, completed) VALUES (?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 
             ps.setString(1, item.getName());
             ps.setString(2, item.getNotes());
@@ -57,7 +57,31 @@ public class DBcontroller {
         }
     }
     public void ExtractData(Vector<TodoItem> ve){
-        String QUERY = "select * from reminders_table";
+        String QUERY = "select * from reminders_table;";
+        try {
+            stm = con.createStatement();
+            PreparedStatement ps = con.prepareStatement(QUERY);
+            System.out.println(ps);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                String name = rs.getString("name");
+                String notes = rs.getString("notes");
+                Date date = rs.getDate("date");
+                Time time = rs.getTime("time");
+                boolean completed = rs.getBoolean("completed");
+                int id = rs.getInt("id");
+                //System.out.println(id+" "+time);
+                ve.add(new TodoItem(name, notes, date.toLocalDate(),time.toLocalTime(),completed, id));
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        //System.out.println(ve);
+    }
+    public void ExtractTotaysTasks(Vector<TodoItem> ve){
+        String QUERY = "SELECT * FROM reminders_table where CAST( DATE AS DATE)= CAST(NOW() AS DATE);";
         try {
             stm = con.createStatement();
             PreparedStatement ps = con.prepareStatement(QUERY);

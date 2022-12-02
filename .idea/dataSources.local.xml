@@ -2,15 +2,20 @@
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-222.4167.29">
     <data-source name="db" uuid="20f573de-3906-49dc-990e-b728ca63d9fa">
-      <database-info product="HSQL Database Engine" version="2.7.0" jdbc-version="4.2" driver-name="HSQL Database Engine Driver" driver-version="2.7.0" dbms="HSQLDB" exact-version="2.7.0">
+      <database-info product="HSQL Database Engine" version="2.7.0" jdbc-version="4.2" driver-name="HSQL Database Engine Driver" driver-version="2.7.0" dbms="HSQLDB" exact-version="2.7.0" exact-driver-version="2.7">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" qname="@">
-            <node kind="schema" qname="@" />
+          <node negative="1">
+            <node kind="database" qname="@">
+              <node kind="schema" qname="@" />
+            </node>
+            <node kind="database" qname="PUBLIC">
+              <node kind="schema" negative="1" />
+            </node>
           </node>
         </introspection-scope>
       </schema-mapping>

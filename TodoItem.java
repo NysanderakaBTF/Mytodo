@@ -1,5 +1,6 @@
 import org.hsqldb.HsqlDateTime;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Timer;
 
-public class TodoItem {
+public class TodoItem implements Serializable {
     private String name;
     private String notes;
     private LocalDate date;

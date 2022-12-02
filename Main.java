@@ -3,6 +3,10 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -92,6 +96,7 @@ public class Main extends JFrame {
         JButton clearButton = new JButton("Complete");
         JButton updateButton = new JButton("Edit");
         JButton delete = new JButton("Delete");
+        JButton save = new JButton("Save");
 
         JPanel buttonPanel = new JPanel();
 
@@ -99,9 +104,36 @@ public class Main extends JFrame {
         //buttonPanel.add(clearButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(delete);
+        buttonPanel.add(save);
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setRowSelectionAllowed(true);
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FileOutputStream fos
+                        = null;
+                ObjectOutputStream oos = null;
+                try {
+                    fos = new FileOutputStream("xyz.txt");
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                }
+                try {
+
+                           oos = new ObjectOutputStream(fos);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                for (int j = 0; j < tdl.size(); j++) {
+                    try {
+                        oos.writeObject(tdl.get(i));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        });
 
 
         //Add panels and table to the main panel
@@ -112,6 +144,7 @@ public class Main extends JFrame {
 
         //db extration
         bcontroller.ExtractData(tdl);
+        updateTableOnSelectionMode();
         cat.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -138,8 +171,9 @@ public class Main extends JFrame {
                 AddDialog a = new AddDialog(null, addible);
                 a.setVisible(true);
                 if( ! addible.getName().equals(String.valueOf(Integer.MIN_VALUE))){
-                    tdl.add(new TodoItem(addible));
+
                     bcontroller.InsertData(addible);
+                    tdl.add(new TodoItem(addible));
                     model.addRow(new Object[]{
                             addible.getName(),
                             addible.getDate().toString(),
@@ -253,6 +287,8 @@ public class Main extends JFrame {
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
         mainPanel.add(listPanel,BorderLayout.EAST);
         mainPanel.add(dispinfo, BorderLayout.CENTER);
+
+        NotoficationDialog nd = new NotoficationDialog(this);
     }
     //Get the main panel
     public JComponent getComponent() {
@@ -263,7 +299,7 @@ public class Main extends JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame f = new JFrame("Add automatically to JTable");
+                JFrame f = new JFrame("My TODO");
                 f.getContentPane()
                         .add(new Main().getComponent());
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -12,5 +12,237 @@
       <Current>1</Current>
     </schema>
     <schema id="5" parent="2" name="SYSTEM_LOBS"/>
+    <table id="6" parent="3" name="SYSTEM_PROPERTIES">
+      <Comment>the system properties and operating parameters of this database</Comment>
+    </table>
+    <table id="7" parent="3" name="SYSTEM_UDTATTRIBUTES"/>
+    <routine id="8" parent="5" name="ALLOC_BLOCKS">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>1330</SourceTextLength>
+      <SpecificName>ALLOC_BLOCKS_10071</SpecificName>
+    </routine>
+    <routine id="9" parent="5" name="ALLOC_SINGLE_BLOCK">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>488</SourceTextLength>
+      <SpecificName>ALLOC_SINGLE_BLOCK_10074</SpecificName>
+    </routine>
+    <routine id="10" parent="5" name="CONVERT_BLOCK">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>395</SourceTextLength>
+      <SpecificName>CONVERT_BLOCK_10029</SpecificName>
+    </routine>
+    <routine id="11" parent="5" name="CREATE_EMPTY_BLOCK">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>678</SourceTextLength>
+      <SpecificName>CREATE_EMPTY_BLOCK_10063</SpecificName>
+    </routine>
+    <routine id="12" parent="5" name="DELETE_BLOCKS">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>527</SourceTextLength>
+      <SpecificName>DELETE_BLOCKS_10060</SpecificName>
+    </routine>
+    <routine id="13" parent="5" name="DELETE_LOB">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>484</SourceTextLength>
+      <SpecificName>DELETE_LOB_10031</SpecificName>
+    </routine>
+    <routine id="14" parent="5" name="DELETE_UNUSED">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>1108</SourceTextLength>
+      <SpecificName>DELETE_UNUSED_10046</SpecificName>
+    </routine>
+    <routine id="15" parent="5" name="DELETE_UNUSED_LOBS">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>1004</SourceTextLength>
+      <SpecificName>DELETE_UNUSED_LOBS_10058</SpecificName>
+    </routine>
+    <routine id="16" parent="5" name="DIVIDE_BLOCK">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>860</SourceTextLength>
+      <SpecificName>DIVIDE_BLOCK_10066</SpecificName>
+    </routine>
+    <routine id="17" parent="5" name="MERGE_EMPTY_BLOCKS">
+      <RoutineKind>procedure</RoutineKind>
+      <SourceTextLength>1078</SourceTextLength>
+      <SpecificName>MERGE_EMPTY_BLOCKS_10079</SpecificName>
+    </routine>
+    <column id="18" parent="7" name="TYPE_CAT">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>1</Position>
+    </column>
+    <column id="19" parent="7" name="TYPE_SCHEM">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="20" parent="7" name="TYPE_NAME">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="21" parent="7" name="ATTR_NAME">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="22" parent="7" name="DATA_TYPE">
+      <DataType>SMALLINT|5s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="23" parent="7" name="ATTR_TYPE_NAME">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>6</Position>
+    </column>
+    <column id="24" parent="7" name="ATTR_SIZE">
+      <DataType>INTEGER|4s</DataType>
+      <Position>7</Position>
+    </column>
+    <column id="25" parent="7" name="DECIMAL_DIGITS">
+      <DataType>INTEGER|4s</DataType>
+      <Position>8</Position>
+    </column>
+    <column id="26" parent="7" name="NUM_PREC_RADIX">
+      <DataType>INTEGER|4s</DataType>
+      <Position>9</Position>
+    </column>
+    <column id="27" parent="7" name="NULLABLE">
+      <DataType>INTEGER|4s</DataType>
+      <Position>10</Position>
+    </column>
+    <column id="28" parent="7" name="REMARKS">
+      <DataType>INFORMATION_SCHEMA.CHARACTER_DATA(65536)|12s</DataType>
+      <Position>11</Position>
+    </column>
+    <column id="29" parent="7" name="ATTR_DEF">
+      <DataType>INFORMATION_SCHEMA.CHARACTER_DATA(65536)|12s</DataType>
+      <Position>12</Position>
+    </column>
+    <column id="30" parent="7" name="SQL_DATA_TYPE">
+      <DataType>INTEGER|4s</DataType>
+      <Position>13</Position>
+    </column>
+    <column id="31" parent="7" name="SQL_DATETIME_SUB">
+      <DataType>INTEGER|4s</DataType>
+      <Position>14</Position>
+    </column>
+    <column id="32" parent="7" name="CHAR_OCTET_LENGTH">
+      <DataType>INTEGER|4s</DataType>
+      <Position>15</Position>
+    </column>
+    <column id="33" parent="7" name="ORDINAL_POSITION">
+      <DataType>INTEGER|4s</DataType>
+      <Position>16</Position>
+    </column>
+    <column id="34" parent="7" name="IS_NULLABLE">
+      <DataType>INFORMATION_SCHEMA.YES_OR_NO(3)|12s</DataType>
+      <Position>17</Position>
+    </column>
+    <column id="35" parent="7" name="SCOPE_CATALOG">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>18</Position>
+    </column>
+    <column id="36" parent="7" name="SCOPE_SCHEMA">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>19</Position>
+    </column>
+    <column id="37" parent="7" name="SCOPE_TABLE">
+      <DataType>INFORMATION_SCHEMA.SQL_IDENTIFIER(128)|12s</DataType>
+      <Position>20</Position>
+    </column>
+    <column id="38" parent="7" name="SOURCE_DATA_TYPE">
+      <DataType>SMALLINT|5s</DataType>
+      <Position>21</Position>
+    </column>
+    <argument id="39" parent="8" name="B_COUNT">
+      <DataType>INTEGER|4s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="40" parent="8" name="B_OFFSET">
+      <DataType>INTEGER|4s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="41" parent="8" name="L_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>3</Position>
+    </argument>
+    <argument id="42" parent="9" name="B_COUNT">
+      <DataType>INTEGER|4s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="43" parent="9" name="B_OFFSET">
+      <DataType>INTEGER|4s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="44" parent="9" name="L_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>3</Position>
+    </argument>
+    <argument id="45" parent="10" name="B_ADDR">
+      <DataType>INTEGER|4s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="46" parent="10" name="B_COUNT">
+      <DataType>INTEGER|4s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="47" parent="10" name="B_OFFSET">
+      <DataType>INTEGER|4s</DataType>
+      <Position>3</Position>
+    </argument>
+    <argument id="48" parent="10" name="L_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>4</Position>
+    </argument>
+    <argument id="49" parent="11" name="B_ADDR">
+      <ArgumentDirection>M</ArgumentDirection>
+      <DataType>INTEGER|4s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="50" parent="11" name="B_COUNT">
+      <DataType>INTEGER|4s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="51" parent="12" name="L_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="52" parent="12" name="B_OFFSET">
+      <DataType>INTEGER|4s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="53" parent="12" name="B_LIMIT">
+      <DataType>INTEGER|4s</DataType>
+      <Position>3</Position>
+    </argument>
+    <argument id="54" parent="12" name="TX_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>4</Position>
+    </argument>
+    <argument id="55" parent="13" name="L_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="56" parent="13" name="TX_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="57" parent="14" name="L_IDS">
+      <DataType>BIGINT ARRAY|2003s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="58" parent="15" name="LIMIT_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="59" parent="15" name="TOTAL_COUNT">
+      <ArgumentDirection>O</ArgumentDirection>
+      <DataType>INTEGER|4s</DataType>
+      <Position>2</Position>
+    </argument>
+    <argument id="60" parent="16" name="B_OFFSET">
+      <DataType>INTEGER|4s</DataType>
+      <Position>1</Position>
+    </argument>
+    <argument id="61" parent="16" name="L_ID">
+      <DataType>BIGINT|-5s</DataType>
+      <Position>2</Position>
+    </argument>
   </database-model>
 </dataSource>
